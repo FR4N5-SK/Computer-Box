@@ -16,7 +16,7 @@ export default {
       },
       fontFamily: {
         Trocchi: ["Trocchi", "serif"],
-        "Source-sans-pro": ["Source Sans 3", "sans-serif"]
+        "Open-Sans": ["Open Sans", "sans-serif"]
       }
     },
   },
