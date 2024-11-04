@@ -1,13 +1,49 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Context } from "../context/Context";
 import { HiLockClosed, HiUserCircle } from "react-icons/hi";
 import { Link } from "react-router-dom";
+import { validateInput } from "../validations/validations";
 
 function FormLogin() {
+  const { login } = useContext(Context);
+
+  const [state, setState] = useState({
+    user: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setState({
+      ...state,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (
+      validateInput(state.user, "Usuario") === "Invalido" ||
+      validateInput(state.password, "Contraseña") === "Invalido"
+    ) {
+      return;
+    }
+
+    login(state)
+    setState({
+      user: "",
+      password: "",
+    })
+  };
+
   return (
     <>
       <div className="w-[390px] md:w-[700px] h-[600px] bg-[rgba(162,163,187)] bg-opacity-30 rounded-xl border-2 border-tropical-indigo ">
-        <form className="p-2 md:p-4 flex items-center flex-col justify-center h-full gap-12">
+        <form
+          className="p-2 md:p-4 flex items-center flex-col justify-center h-full gap-12"
+          onSubmit={handleSubmit}
+        >
           <h2 className="text-center font-Trocchi text-2xl md:text-4xl">
             INICIAR SESION
           </h2>
@@ -19,6 +55,8 @@ function FormLogin() {
                 placeholder="Usuario"
                 id="user"
                 name="user"
+                value={state.user}
+                onChange={handleChange}
               />
               <span className="absolute right-2 md:right-11 text-2xl md:text-4xl text-tropical-indigo">
                 <HiUserCircle />
@@ -32,6 +70,8 @@ function FormLogin() {
                 placeholder="Contraseña"
                 id="password"
                 name="password"
+                value={state.password}
+                onChange={handleChange}
               />
               <span className="absolute right-2 md:right-11 text-2xl md:text-4xl text-tropical-indigo">
                 <HiLockClosed />
@@ -56,13 +96,8 @@ function FormLogin() {
             </h4>
           </div>
 
-          <button>
-            <Link
-              to={"/"}
-              className="bg-tropical-indigo font-Trocchi text-sm md:text-lg p-3 rounded-lg text-blanco transition-colors duration-500 hover:text-blanco hover:bg-cool-gray"
-            >
-              INICIAR SESION
-            </Link>
+          <button className="bg-tropical-indigo font-Trocchi text-sm md:text-lg p-3 rounded-lg text-blanco transition-colors duration-500 hover:text-blanco hover:bg-cool-gray">
+            INICIAR SESION
           </button>
         </form>
       </div>

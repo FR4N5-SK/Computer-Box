@@ -11,8 +11,8 @@ import { Context } from "./context/Context";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 
 function App() {
-  const {token} = useContext(Context)
-  console.log(token);
+  const {token, users} = useContext(Context)
+  
   const router = createBrowserRouter([
     {
       path: "/",
