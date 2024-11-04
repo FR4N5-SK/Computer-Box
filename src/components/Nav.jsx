@@ -14,19 +14,22 @@ function Nav() {
         <nav className="h-full w-3/4 md:w-4/6 flex lg:flex-col lg:w-full lg:h-4/6 justify-center items-center">
           <ul className="grid grid-cols-3 md:flex lg:flex-col w-full h-full justify-center">
             <Link to={"/"}>
-              <li className="h-full lg:h-auto w-full text-blanco px-4 lg:py-4 flex flex-col items-center justify-center hover:text-tropical-indigo hover:bg-blanco transition-all duration-500">
+              <li className="h-full lg:h-auto w-full text-blanco px-4 lg:py-4 flex flex-col items-center justify-center hover:text-tropical-indigo hover:bg-blanco transition-all
+               duration-500">
                 <FaHome className="text-4xl" />
                 <h3 className="text-lg font-semibold font-Open-Sans">Home</h3>
               </li>
             </Link>
             <Link to={"/read"}>
-              <li className="h-full lg:h-auto w-full text-blanco px-4 lg:py-4 flex flex-col items-center justify-center hover:text-tropical-indigo hover:bg-blanco transition-all duration-500">
+              <li className="h-full lg:h-auto w-full text-blanco px-4 lg:py-4 flex flex-col items-center justify-center hover:text-tropical-indigo hover:bg-blanco transition-all
+               duration-500">
                 <FaClipboardList className="text-4xl" />
                 <h3 className="text-lg font-semibold font-Open-Sans">Listar</h3>
               </li>
             </Link>
             <Link to={"/add"}>
-              <li className="h-full lg:h-auto w-full text-blanco px-4 lg:py-4 flex flex-col items-center justify-center hover:text-tropical-indigo hover:bg-blanco transition-all duration-500">
+              <li className="h-full lg:h-auto w-full text-blanco px-4 lg:py-4 flex flex-col items-center justify-center hover:text-tropical-indigo hover:bg-blanco transition-all
+               duration-500">
                 <FaCirclePlus  className="text-4xl" />
                 <h3 className="text-lg font-semibold font-Open-Sans">Agregar</h3>
               </li>

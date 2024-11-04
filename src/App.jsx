@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPath from "./components/Errors/ErrorPath";
 import Login from "./components/auth/Login";
@@ -7,43 +7,70 @@ import Recovery from "./components/auth/Recovery";
 import Home from "./components/views/Home";
 import Add from "./components/views/Add";
 import Read from "./components/views/Read";
-
-const token = true
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: token ? (<Home/>) : (<h1>No has iniciado sesion</h1>)
-  },
-  {
-    path: "/read",
-    element: token ? (<Read/>) : (<h1>No has iniciado sesion</h1>)
-  },
-  {
-    path: "/add",
-    element: token ? (<Add/>) : (<h1>No has iniciado sesion</h1>)
-  },
-  {
-    path: "/login",
-    element: token ? (<Login/>) : (<h1>No has iniciado sesion</h1>)
-  },
-  {
-    path: "/register",
-    element: token ? (<Register/>) : (<h1>No has iniciado sesion</h1>)
-  },
-  {
-    path: "/recovery",
-    element: token ? (<Recovery/>) : (<h1>No has iniciado sesion</h1>)
-  },
-  {
-    path: "*",
-    element: <ErrorPath />
-  }
-])
+import { Context } from "./context/Context";
+import { ProtectedRoute } from "./components/ProtectedRoute";
 
 function App() {
+  const {token} = useContext(Context)
+  console.log(token);
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: (
+        <ProtectedRoute isAllowed={token} redirectTo="/login">
+          <Home />
+        </ProtectedRoute>
+      ),
+    },
+    {
+      path: "/read",
+      element: (
+        <ProtectedRoute isAllowed={token} redirectTo="/login">
+          <Read />
+        </ProtectedRoute>
+      ),
+    },
+    {
+      path: "/add",
+      element: (
+        <ProtectedRoute isAllowed={token} redirectTo="/login">
+          <Add />
+        </ProtectedRoute>
+      ),
+    },
+    {
+      path: "/login",
+      element: (
+        <ProtectedRoute isAllowed={!token} redirectTo="/">
+          <Login />
+        </ProtectedRoute>
+      ),
+    },
+    {
+      path: "/register",
+      element: (
+        <ProtectedRoute isAllowed={!token} redirectTo="/">
+          <Register />
+        </ProtectedRoute>
+      ),
+    },
+    {
+      path: "/recovery",
+      element: (
+        <ProtectedRoute isAllowed={!token} redirectTo="/">
+          <Recovery />
+        </ProtectedRoute>
+      ),
+    },
+    {
+      path: "*",
+      element: <ErrorPath />,
+    },
+  ]);
+
   return (
     <>
-      <RouterProvider router={router}/>
+      <RouterProvider router={router} />
     </>
   );
 }
