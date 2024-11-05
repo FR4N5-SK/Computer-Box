@@ -1,5 +1,6 @@
 import { createContext, useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
+import { alertError, alertSuccess } from "../validations/alerts";
 
 export const Context = createContext();
 
@@ -26,6 +27,7 @@ export function ContextProvider(props) {
     });
     newDate.push(inssue)
     localStorage.setItem("inssues", JSON.stringify(newDate))
+    alertSuccess(`Se ha agregado la incidencia con exito`)
   }
 
   function deleteInssue(inssue) {
@@ -37,17 +39,17 @@ export function ContextProvider(props) {
     });
     setInssues(data);
     localStorage.setItem("inssues", JSON.stringify(data));
+    alertSuccess(`Se ha eliminado con exito la incidencia`)
   }
 
   function registerUser(user) {
     for (let i = 0; i < users.length; i++) {
       if (users[i].user === user.user) {
-        alert(`Ya existe ese usuario`)
-        return
+        return alertError(`Ya existe ese usuario`)
       }
     }
     let newDate = []
-    setUsers(...users, user);
+    setUsers([...users, user]);
     users.forEach(item => {
       newDate.push(item)
     });
@@ -57,25 +59,26 @@ export function ContextProvider(props) {
     setToken(true)
     setUser(user.user)
     localStorage.setItem("user", user.user)
+    return alertSuccess(`Te has registrado e Iniciaste Sesion`)
   }
 
   function logout() {
     localStorage.setItem("token", false);
     setToken(false);
+    alertSuccess(`Has cerrado sesion`)
   }
 
   function login(data) {
     for (let i = 0; i < users.length; i++) {
       if (users[i].user === data.user && users[i].password === data.password) {
-        alert('Has iniciado sesion')
         localStorage.setItem("token", true);
         setToken(true);
         setUser(data.user)
         localStorage.setItem("user", data.user)
-        return
+        return alertSuccess(`Has iniciado sesion`)
       }      
     }
-    return alert(`Credenciales invalidas`)
+    return alertError(`Credenciales Invalidas`)
   }
 
   function recovery(data) {
@@ -92,8 +95,10 @@ export function ContextProvider(props) {
         setToken(true)
         setUser(data.user)
         localStorage.setItem("user", data.user)
+        return alertSuccess(`Has recuperado tu contraseña e iniciado sesion`)
       }   
     }
+    return alertError(`No existe el usuario que deseas recuperar la contraseña`)
   }
 
   function editInssue(inssue) {
@@ -107,6 +112,7 @@ export function ContextProvider(props) {
     });
     setInssues(data);
     localStorage.setItem("inssues", JSON.stringify(data));
+    alertSuccess(`Se ha editado con exita la incidencia`)
   }
 
   return (

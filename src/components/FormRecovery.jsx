@@ -3,7 +3,7 @@ import { Context } from "../context/Context";
 import { HiLockClosed, HiUserCircle } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import { FaEnvelope } from "react-icons/fa";
-import { validateConfirmPassword, validateInput } from "../validations/validations";
+import { validateConfirmPassword, validateInput, validatePassword } from "../validations/validations";
 
 function FormRecovery() {
   const { recovery } = useContext(Context);
@@ -30,6 +30,10 @@ function FormRecovery() {
       validateInput(state.password, "Contraseña") === "Invalido" ||
       validateInput(state.confirmPassword, "Confirmar Contraseña") === "Invalido"
     ) {
+      return
+    }
+
+    if (validatePassword(state.password)) {
       return
     }
 

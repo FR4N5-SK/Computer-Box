@@ -14,7 +14,7 @@ function Table() {
   const [data, setData] = useState([]);
 
   const [pagina, setPagina] = useState(1);
-  const [porPagina, setPorPagina] = useState(3);
+  const [porPagina, setPorPagina] = useState(10);
 
   useEffect(() => {
     setData(inssues)
