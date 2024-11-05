@@ -188,12 +188,12 @@ function Home() {
               PANEL DE ANALITICAS
             </h2>
 
-            <div className="gap-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 h-full w-full bg-tropical-indigo bg-opacity-50 p-8 rounded-md">
+            <div className="gap-8 flex flex-wrap items-center justify-center h-full w-full bg-tropical-indigo bg-opacity-50 p-8 rounded-md">
               <div className="h-auto flex flex-col gap-4">
                 <h3 className="font-Trocchi text-xl text-center text-negro">
                   INCIDENCIAS POR USUARIO
                 </h3>
-                <div className="h-[275px]">
+                <div className="h-[400px] w-[350px]">
                   <CircleChart
                     datos={dataInssues}
                     compare={dataUsers}
@@ -206,7 +206,7 @@ function Home() {
                 <h3 className="font-Trocchi text-xl text-center text-negro">
                   INCIDENCIAS POR GRAVEDAD
                 </h3>
-                <div className="h-[275px]">
+                <div className="h-[400px] w-[350px]">
                   <CircleChart
                     datos={dataImpact}
                     compare={gravedad}
@@ -219,7 +219,7 @@ function Home() {
                 <h3 className="font-Trocchi text-xl text-center text-negro">
                   INCIDENCIAS POR TIPO DE EQUIPO
                 </h3>
-                <div className="h-[275px]">
+                <div className="h-[400px] w-[350px]">
                   <CircleChart
                     datos={dataDevice}
                     compare={device}
