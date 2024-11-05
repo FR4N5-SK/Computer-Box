@@ -10,7 +10,7 @@ function Nav() {
 
   return (
     <>
-      <header className="w-full h-[125px] lg:w-[125px] bg-periwinkle lg:h-[100vh] absolute left-0 flex lg:flex-col">
+      <header className="w-full h-[125px] lg:w-[125px] bg-periwinkle lg:h-[100vh] left-0 flex lg:flex-col fixed">
         <div className="flex items-center justify-center h-full lg:h-1/6 md:w-1/6 lg:w-full w-0 invisible md:visible">
           <img
             src={Logo}
