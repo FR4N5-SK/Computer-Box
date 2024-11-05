@@ -1,8 +1,21 @@
 import Nav from "../Nav";
 import { FaSearch } from "react-icons/fa";
 import Table from "../Table";
+import { useContext, useEffect, useState } from "react";
+import { Context } from "../../context/Context";
 
 function Read() {
+  const {setSearch} = useContext(Context)
+  const [state, setState] = useState("");
+
+  useEffect(() => {
+    const getData = setTimeout(() => {
+      setSearch(state)
+    }, 500);
+
+    return () => clearTimeout(getData)
+  }, [state]);
+
   return (
     <>
       <main className="bg-blanco w-full h-[100vh] relative">
@@ -16,7 +29,9 @@ function Read() {
             <div className="w-full md:w-4/6 lg:w-2/6 relative">
               <input
                 type="text"
-                placeholder="Buscar..."
+                placeholder="Buscar Solicitante..."
+                value={state}
+                onChange={(e) => {setState(e.target.value)}}
                 className="w-full placeholder:text-blanco text-sm md:text-lg font-semibold pr-12 bg-tropical-indigo rounded-md py-2 px-3 bg-opacity-80 text-blanco focus:outline-none"
               />
               <FaSearch className="absolute right-4 top-2 text-[20px] md:text-[25px] text-blanco" />

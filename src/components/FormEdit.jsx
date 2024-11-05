@@ -2,20 +2,20 @@ import { useContext, useState } from "react";
 import { Context } from "../context/Context";
 import { validateInput } from "../validations/validations";
 
-function FormAdd() {
-  const { user, addInssue } = useContext(Context);
+function FormEdit() {
+  const { user, editInssue, inssue } = useContext(Context);
 
   const [state, setState] = useState({
-    id: "",
-    user: user,
-    applicant: "",
-    dateStart: "",
-    dateEnd: "",
-    typeDevice: "",
-    typeInssue: "",
-    description: "",
-    location: "",
-    impact: ""
+    id: inssue.id,
+    user: inssue.user,
+    applicant: inssue.applicant,
+    dateStart: inssue.dateStart,
+    dateEnd: inssue.dateEnd,
+    typeDevice: inssue.typeDevice,
+    typeInssue: inssue.typeInssue,
+    description: inssue.description,
+    location: inssue.location,
+    impact: inssue.impact
   });
 
   const handleChange = (e) => {
@@ -42,27 +42,17 @@ function FormAdd() {
       return;
     }
 
-    addInssue(state);
-    setState({
-      user: user,
-      applicant: "",
-      dateStart: "",
-      dateEnd: "",
-      typeDevice: "",
-      typeInssue: "",
-      description: "",
-      location: "",
-    });
+    editInssue(state);
   };
 
   return (
     <>
-      <div className="bg-periwinkle bg-opacity-15 rounded-2xl p-4 w-[450px] h-auto md:w-[700px] lg:w-[1100px] md:h-[850px] m-12">
+      <div className="bg-blanco rounded-2xl p-4 w-[450px] h-auto md:w-[700px] lg:w-[1100px] md:h-[850px] m-12">
         <form
           className="w-full h-full flex flex-col gap-12 px-10 items-center justify-center"
           onSubmit={handleSubmit}
         >
-          <h2 className="text-2xl font-Trocchi">AGREGAR INCIDENCIAS</h2>
+          <h2 className="text-2xl font-Trocchi text-negro">EDITAR INCIDENCIAS</h2>
           <div className="gap-8 flex flex-col w-full">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
               <div className="flex flex-col gap-2">
@@ -239,7 +229,7 @@ function FormAdd() {
                   class="w-8 h-8 border-gray-300 accent-tropical-indigo"
                 />
                 <label
-                  for="country-option-1"
+                  htmlFor="country-option-1"
                   class="block ms-2 text-sm md:text-lg font-Open-Sansm font-semibold text-negro"
                 >
                   Muy Baja
@@ -256,8 +246,8 @@ function FormAdd() {
                   class="w-8 h-8 border-gray-300 accent-tropical-indigo"
                 />
                 <label
-                  for="country-option-2"
-                  class="block ms-2 text-sm md:text-lg font-Open-Sans font-semibold text-negrotext-negro"
+                  htmlFor="country-option-2"
+                  class="block ms-2 text-sm md:text-lg font-Open-Sans font-semibold text-negro"
                 >
                   Baja
                 </label>
@@ -273,8 +263,8 @@ function FormAdd() {
                   class="w-8 h-8 border-gray-300 accent-tropical-indigo"
                 />
                 <label
-                  for="country-option-3"
-                  class="block ms-2 text-sm md:text-lg font-Open-Sans font-semibold text-negrotext-negro"
+                  htmlFor="country-option-3"
+                  class="block ms-2 text-sm md:text-lg font-Open-Sans font-semibold text-negro"
                 >
                   Media
                 </label>
@@ -290,8 +280,8 @@ function FormAdd() {
                   class="w-8 h-8 border-gray-300 accent-tropical-indigo"
                 />
                 <label
-                  for="country-option-4"
-                  class="block ms-2 text-sm md:text-lg font-Open-Sans font-semibold text-negrotext-negro"
+                  htmlFor="country-option-4"
+                  class="block ms-2 text-sm md:text-lg font-Open-Sans font-semibold text-negro"
                 >
                   Alta
                 </label>
@@ -307,8 +297,8 @@ function FormAdd() {
                   class="w-8 h-8 border-gray-300 accent-tropical-indigo"
                 />
                 <label
-                  for="option-disabled"
-                  class="block ms-2 text-sm md:text-lg font-Open-Sans font-semibold text-negrotext-negro"
+                  htmlFor="option-disabled"
+                  class="block ms-2 text-sm md:text-lg font-Open-Sans font-semibold text-negro"
                 >
                   Muy Alta
                 </label>
@@ -317,7 +307,7 @@ function FormAdd() {
           </div>
 
           <button className="text-sm md:text-lg font-Trocchi p-2 px-6 bg-periwinkle rounded-md hover:bg-negro hover:text-periwinkle transition-all duration-500">
-            AGREGAR
+            EDITAR
           </button>
         </form>
       </div>
@@ -325,4 +315,4 @@ function FormAdd() {
   );
 }
 
-export default FormAdd;
+export default FormEdit;
